@@ -11,6 +11,9 @@
 .medium {                /* my mod */
   font-size: 170% 
 }
+.larger {                /* my mod */
+  font-size: 140% 
+}
 
 .remark-slide-content { /* my mod */
   background-size: contain; 
