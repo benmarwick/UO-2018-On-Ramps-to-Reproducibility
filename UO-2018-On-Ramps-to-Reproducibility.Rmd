@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Rapid On-ramps to Reproducible Research for R Users</title>
-    <meta charset="utf-8">
-    <meta name="author" content="Ben Marwick" />
-    <meta name="date" content="2017-10-25" />
-    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="my-theme.css" type="text/css" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
-
-# Rapid On-ramps to Reproducible Research for R Users
-### Ben Marwick
-### 25 October 2017
-
+---
+title: "Rapid On-ramps to Reproducible Research for R Users"
+author: "Ben Marwick"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  xaringan::moon_reader:
+    css: "my-theme.css"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
 ---
 
-
-
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
 class: normal
 
@@ -27,24 +23,24 @@ class: normal
 
 Marwick, B. (2017). Computational reproducibility in archaeological research: Basic principles and a case study of their implementation. _Journal of Archaeological Method and Theory_, 24(2), 424-450. preprint at https://osf.io/preprints/socarxiv/q4v73/
 
-Marwick, B., Boettiger, C., &amp; Mullen, L. (2017). Packaging data analytical work reproducibly using R (and friends). _The American Statistician_, (just-accepted). preprint at https://peerj.com/preprints/3192/
+Marwick, B., Boettiger, C., & Mullen, L. (2017). Packaging data analytical work reproducibly using R (and friends). _The American Statistician_ 70 (1) : 80-88  https://doi.org/10.1080/00031305.2017.1375986
 
 Eglen, S. J., Marwick, B., Halchenko, Y. O., et al. (2017). Toward standard practices for sharing computer code and programs in neuroscience. _Nature Neuroscience_, 20(6), 770-773. preprint at https://www.biorxiv.org/content/early/2017/02/28/045104
 
-Kitzes, J., Turek, D., &amp; Deniz, F. (Eds.). (2017). _The Practice of Reproducible Research: Case Studies and Lessons from the Data-Intensive Sciences_. Oakland, CA: University of California Press. Full text online at https://www.practicereproducibleresearch.org (contributed to a few chapters)
+Kitzes, J., Turek, D., & Deniz, F. (Eds.). (2017). _The Practice of Reproducible Research: Case Studies and Lessons from the Data-Intensive Sciences_. Oakland, CA: University of California Press. Full text online at https://www.practicereproducibleresearch.org (contributed to a few chapters)
 
 ---
 class: normal
 
 # And outside of the ivory tower...
 
-Marwick, B., &amp; Jacobs, Z. (2017). Here's the three-pronged approach we're using in our own research to tackle the reproducibility issue. _The Conversation._  https://theconversation.com/heres-the-three-pronged-approach-were-using-in-our-own-research-to-tackle-the-reproducibility-issue-80997
+Marwick, B., & Jacobs, Z. (2017). Here's the three-pronged approach we're using in our own research to tackle the reproducibility issue. _The Conversation._  https://theconversation.com/heres-the-three-pronged-approach-were-using-in-our-own-research-to-tackle-the-reproducibility-issue-80997
 
-Marwick, B. (2015). How Computers Broke Science–and What We Can Do to Fix It. _The Conversation._ https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938 translated into French, German, Japanese &amp; Chinese
+Marwick, B. (2015). How Computers Broke Science–and What We Can Do to Fix It. _The Conversation._ https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938 translated into French, German, Japanese & Chinese
 
 ---
 
-background-image: url(https://mfr.osf.io/export?url=https://osf.io/9bru3/?action=download%26direct%26mode=render&amp;initialWidth=723&amp;childId=mfrIframe&amp;format=1200x1200.jpeg)
+background-image: url(https://mfr.osf.io/export?url=https://osf.io/9bru3/?action=download%26direct%26mode=render&initialWidth=723&childId=mfrIframe&format=1200x1200.jpeg)
 
 
 ---
@@ -54,13 +50,13 @@ background-image: url(https://media.giphy.com/media/d3QGYTziFiDL2/giphy.gif)
 ---
 class: normal
 
-# How to make this as quick &amp; easy as possible?
+# How to make this as quick & easy as possible?
 
-.large[&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Use functions instead of copy-pasting]   
+.large[<i class="fa fa-lightbulb-o"></i> Use functions instead of copy-pasting]   
 
-.large[&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Use sensible templates &amp; default options] 
+.large[<i class="fa fa-lightbulb-o"></i> Use sensible templates & default options] 
 
-.large[&lt;i class="fa fa-lightbulb-o"&gt;&lt;/i&gt; Hide details we don't care much about]
+.large[<i class="fa fa-lightbulb-o"></i> Hide details we don't care much about]
 
 ---
 class: normal
@@ -76,8 +72,8 @@ class: normal
 
 Install from GitHub (eventually CRAN too):
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
+# install.packages("devtools")
 devtools::install_github("benmarwick/rrtools")
 ```
 
@@ -87,9 +83,8 @@ class: normal
 # 1. Create a basic R package
 
 This is `devtools::create()` with an additional step to either start the project in RStudio, or set the working directory to the package location, if not using RStudio: 
-
-```r
-rrtools::use_compendium("pkgname")
+```{r eval=FALSE, tidy=FALSE}
+rrtools::use_compendium("pkgname") # use a meaningful name :)
 ```
 
 Why? Using a widely recognised file structure makes it easier for you to navigate, and easier for others to browse and inspect your work.
@@ -101,8 +96,7 @@ class: normal
 
 This adds a reference to the MIT license in the DESCRIPTION file and generates a LICENSE file listing the name provided as the copyright holder:
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
 usethis::use_mit_license(copyright_holder = "My Name")
 ```
 
@@ -115,11 +109,34 @@ class: normal
 
 # 3. Use version control for tracking changes and collaboration
 
+Before we do this, we need to do some once-off setup. Let's check that Git is ready for us:
+
+```{sh eval = FALSE}
+which git
+git --version
+```
+
+And now we need to introduce ourselves to Git:
+
+```{sh eval = FALSE}
+git config --global user.name 'Ben Marwick'
+git config --global user.email 'benmarwick@hotmail.com'
+git config --global --list
+```
+
+And let's make sure we have an account at https://github.com
+
+---
+
+class: normal
+
+# 3. Use version control for tracking changes and collaboration
+
 If you are connected to the internet, this initializes a local git repository, connects to GitHub, and creates a remote repository:
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
 usethis::use_github(".", 
+                    # from https://github.com/settings/tokens
                     auth_token = "xxxx", 
                     protocol = "https", 
                     private = FALSE)
@@ -139,8 +156,7 @@ This generates README.Rmd and renders it to README.md, ready to display on GitHu
 - license information for the text, figures, code and data in your compendium   
 - this also adds two other markdown files: a code of conduct for users, and basic instructions for people who want to contribute to your project
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
 rrtools::use_readme_rmd()
 ```
 
@@ -158,8 +174,7 @@ This creates a research compendium file structure and add template documents suc
 - a citation style file
 - a template for styling MS Word output
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
 rrtools::use_analysis()
 ```
 
@@ -177,7 +192,7 @@ analysis/
 │   ├── references.bib    # this contains the reference list information
 │   └── journal-of-archaeological-science.csl
 |                         # this sets the style of citations 
-|                         # &amp; reference list
+|                         # & reference list
 ├── figures/
 |
 ├── data/
@@ -203,8 +218,7 @@ class: normal
 
 # The compendium plus!
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
 rrtools::use_dockerfile()
 rrtools::use_travis()
 usethis::use_testthat()
@@ -219,8 +233,7 @@ class: normal
 
 We have not attempted to automate depositing the compendium in a repository. 
 
-
-```r
+```{r eval=FALSE, tidy=FALSE}
 # e.g. something like
 rrtools::deposit_compendium()
 ```
@@ -234,11 +247,11 @@ class: normal
 
 # To conclude
 
-.large[&lt;i class="fa fa-check-square-o"&gt;&lt;/i&gt; We have many encoded best practices in getting organised]   
+.large[<i class="fa fa-check-square-o"></i> We have many encoded best practices in getting organised]   
 
-.large[&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt; We have saved a lot of start-up time] 
+.large[<i class="fa fa-clock-o"></i> We have saved a lot of start-up time] 
 
-.large[&lt;i class="fa fa-recycle"&gt;&lt;/i&gt; We have a sustainable path to working reproducibly]
+.large[<i class="fa fa-recycle"></i> We have a sustainable path to working reproducibly]
 
 ---
 class: normal
@@ -248,7 +261,7 @@ class: normal
 .larger[
 Presentation written in [R Markdown using xaringan](https://github.com/yihui/xaringan)
 
-Compiled into HTML5 using [RStudio](http://www.rstudio.com/ide/) &amp; [knitr](http://yihui.name/knitr)
+Compiled into HTML5 using [RStudio](http://www.rstudio.com/ide/) & [knitr](http://yihui.name/knitr)
 
 Source code hosting:
 https://github.com/benmarwick/CSSS-2017-On-Ramps-to-Reproducibility
@@ -260,40 +273,7 @@ Licensing:
 * Presentation: [CC-BY-3.0](http://creativecommons.org/licenses/by/3.0/us/)
 
 * Source code: [MIT](http://opensource.org/licenses/MIT) ]
-    </textarea>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": true
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-  }
-});
-</script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+
+
+
