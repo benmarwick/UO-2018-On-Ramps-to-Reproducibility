@@ -70,6 +70,8 @@ class: normal
 
 # From zero to reproducible in 5+ steps (minutes)
 
+Ensure you have the current versions of R & RStudio, the development tools (xcode or Rtools), and then:
+
 Install from GitHub (eventually CRAN too):
 
 ```{r eval=FALSE, tidy=FALSE}
@@ -97,10 +99,10 @@ class: normal
 This adds a reference to the MIT license in the DESCRIPTION file and generates a LICENSE file listing the name provided as the copyright holder:
 
 ```{r eval=FALSE, tidy=FALSE}
-usethis::use_mit_license(copyright_holder = "My Name")
+usethis::use_mit_license(name = "My Name")
 ```
 
-To use a different license, replace this line with `usethis::use_gpl3_license(copyright_holder = "My Name")`, or follow the instructions for other licenses
+To use a different license, replace this line with `usethis::use_gpl3_license(name = "My Name")`, or follow the instructions for other licenses
 
 Why? To make it clear that you're happy for others to use your code, and that you're not responsible if they have problems. 
 
@@ -135,6 +137,7 @@ class: normal
 If you are connected to the internet, this initializes a local git repository, connects to GitHub, and creates a remote repository:
 
 ```{r eval=FALSE, tidy=FALSE}
+usethis::use_git()
 usethis::use_github(".", 
                     # from https://github.com/settings/tokens
                     auth_token = "xxxx", 
@@ -210,6 +213,17 @@ You can exclude `data/` from git, if you need to keep the data private.
 If you're writing a PhD thesis, use [huskydown](https://github.com/benmarwick/huskydown) to get PDF templates and a directory structure suitable for a UW PhD
 
 ---
+class: normal
+
+# Let's take R Markdown for a test drive
+
+.large[<i class="fa fa-wrench"></i> Code chunks & in-line code]   
+
+.large[<i class="fa fa-wrench"></i> Citations, captions & cross-references] 
+
+.large[<i class="fa fa-wrench"></i> Figures, plots & tables]
+
+---
 
 background-image: url(https://media.giphy.com/media/aO2xSELarYXfy/giphy.gif)
 
@@ -264,7 +278,7 @@ Presentation written in [R Markdown using xaringan](https://github.com/yihui/xar
 Compiled into HTML5 using [RStudio](http://www.rstudio.com/ide/) & [knitr](http://yihui.name/knitr)
 
 Source code hosting:
-https://github.com/benmarwick/CSSS-2017-On-Ramps-to-Reproducibility
+https://github.com/benmarwick/UO-2018-On-Ramps-to-Reproducibility
 
 ORCID: http://orcid.org/0000-0001-7879-4531
 

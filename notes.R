@@ -1,8 +1,0 @@
-rrtools::use_compendium("pkgname")
-usethis::use_mit_license(name = "Ben Marwick")
-devtools::use_github(".", auth_token = "43e89081bbdeecf713b35fa6b8f0c588fdbda684", protocol = "https", private = FALSE)
-rrtools::use_readme_rmd()
-rrtools::use_analysis()
-rrtools::use_dockerfile()
-rrtools::use_travis()
-usethis::use_testthat()
